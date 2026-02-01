@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let passwordUser = prompt("Mời bạn nhập mật khẩu: ");
+        let numberofAttempts = prompt("Mời bạn nhập số lần thử: ");
+        let loginSuccess = false;
+        while (numberofAttempts > 0) {
+            let enternedPassword = prompt("Nhập mật khẩu của bạn(Bạn còn " + numberofAttempts + " lần thử): ");
+
+            if (enternedPassword === passwordUser) {
+                alert("Đăng nhập thành công!");
+                loginSuccess = true;
+                break;
+            } else {
+                numberofAttempts--;
+                if (numberofAttempts > 0) {
+                    alert("Mật khẩu không đúng. Vui lòng thử lại.");
+                }
+            }
+            if (loginSuccess === false){
+                alert("Bạn đã nhập hết số lần đăng nhập. Tạm thời bị khoá tài khoản!");
+            }
+            while (loginSuccess === true){
+                let option = prompt("Mời Bạn chọn chức năng: \n 1. Đổi mật khẩu \n 2. Đăng xuất \n Thoát");
+                let giaSo = Number(gia);
+
+                if (option === "1") {
+                    if (giaSo <= 0) {
+                        alert("Giá không hợp lệ. Vui lòng nhập lại.");
+                        continue;
+                    }
+                    totalMoney = totalMoney + giaSo;
+                }
+                else if (option === "2"){
+                console.log("---Danh sách vị trí kệ---");
+                for (let ke = 1; ke <= soKe; ke++) {
+                    for (let ke = 1; ke <= 5; ke++) {
+                        // Kiểm tra điều kiện nâng cao cho Khu 2 - Kệ 3
+                        if (khu === 2 && ke === 3) {
+                            console.log("Khu vực " + khu + " - Kệ " + ke + " (Đang sửa chữa)");
+                            continue; 
+                        }
+                        console.log("Khu vực " + khu + " - Kệ " + ke);
+                    }
+                }
+                alert("Đã in danh sách kệ ra Console (Nhấn F12 để xem)");
+            }
+                        else if (option === "3"){
+                            alert("Hẹn gặp lại!");
+                            loginSuccess = false;
+                        }
+                        else {
+                            alert("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+                        }
+                    }
+                }
+    </script>
+</body>
+</html>

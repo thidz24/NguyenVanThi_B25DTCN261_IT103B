@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let continueWork;
+        let totalRequests = 0;
+        let approvedRequests = 0;
+        let rejectedRequests = 0;
+        let pendingRequests = 0;
+        do {
+            continueWork = prompt("Có yêu cầu đặt mượn trước mới không? (có/không)").toLowerCase();
+            if (continueWork === "không") {
+                break;
+            }
+            if (continueWork === "có") {
+                let readerName = prompt("Nhập tên bạn đọc:");
+                let bookCode = prompt("Nhập mã sách muốn đặt trước:");
+                let bookTitle = prompt("Nhập tên sách (tham khảo):");
+                let waitingDays;
+                do {
+                    waitingDays = parseInt(prompt("Nhập số ngày dự kiến chờ (số nguyên ≥ 1):"));
+                } while (isNaN(waitingDays) || waitingDays < 1);
+                let priority = parseInt(prompt("Nhập mức ưu tiên:\n1 - Sinh viên bình thường\n2 - Giảng viên / Nghiên cứu sinh\n3 - Nhân viên thư viện / Đặc cách"));
+                if (waitingDays > 45) {
+                    console.log("Từ chối: Thời gian chờ quá lâu (>45 ngày)");
+                    rejectedRequests++;
+                } else if (priority === 3) {
+                    console.log("Đặt trước thành công - Ưu tiên đặc cách cao nhất");
+                    approvedRequests++;
+                } else if (priority === 2 && waitingDays <= 30) {
+                    console.log("Đặt trước thành công - Ưu tiên giảng viên/nghiên cứu");
+                    approvedRequests++;
+                } else if (priority === 1 && waitingDays <= 21) {
+                    console.log("Đặt trước thành công");
+                    approvedRequests++;
+                } else {
+                    console.log("Đặt trước tạm thời - Chờ xét duyệt thêm");
+                    pendingRequests++;
+                }
+                totalRequests++;
+            }
+        } while (true);
+        console.log("Tổng số yêu cầu đã xử lý: " + totalRequests);
+        console.log("Số yêu cầu được đặt trước thành công: " + approvedRequests);
+        console.log("Số yêu cầu bị từ chối: " + rejectedRequests);
+        console.log("Số yêu cầu chờ xét duyệt: " + pendingRequests);
+    </script>
+</body>
+</html>
