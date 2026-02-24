@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let nullArray = [];
+        let bookNumber = +prompt("Bạn muốn nhập bao nhiêu cuốn sách?");
+        for(let i=0;i<bookNumber;i++) {
+            let bookName = prompt(`Nhập tên cuốn sách thứ ${i+1}:`);
+            nullArray.push(bookName);
+        }
+        alert(`Tổng số sách đã được trả: ${nullArray.length}`); 
+        alert(`Tất cả tên sách trong danh sách: ${nullArray.join(", ")}`);
+    </script>
+</body>
+</html>
