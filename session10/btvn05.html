@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const teamHistory = [
+            {
+                name: "Messi",
+                position: "Forward",
+                nationality: "Argentina",
+                season: {
+                    "2022-2023": { matches: 34, goals: 21, assists: 14, yellowCard: 3 },
+                    "2023-2024": { matches: 32, goals: 25, assists: 15, yellowCard: 2 },
+                    "2024-2025": { matches: 28, goals: 18, assists: 12, yellowCard: 1 },
+                },
+            },
+            {
+                name: "Ronaldo",
+                position: "Forward",
+                nationality: "Portugal",
+                season: {
+                    "2022-2023": { matches: 38, goals: 28, assists: 8, yellowCard: 5 },
+                    "2023-2024": { matches: 35, goals: 30, assists: 10, yellowCard: 4 },
+                    "2024-2025": { matches: 30, goals: 22, assists: 9, yellowCard: 3 },
+                },
+            },
+        ];
+        const indexPlayers = {
+            name: "...",
+            position: "...",
+            nationality: "...",
+            careerStats: {
+                totalMatches: số,
+                totalGoals: số,
+                totalAssits: số,
+                totalYellowCards: số,
+                averageGoalsPerMatch: số,
+                averageAssistsPerMatch: số,
+                bestSeason: {
+                    season: "năm-năm",
+                    goals: số,
+                    assists: số,
+                }
+            }
+        }
+        function generatePlayerSeasonReport(playerName, teamHistory) {
+
+            const player = teamHistory.find(p => p.name === playerName);
+            if (!player) return null;
+
+            const careerStats = {
+                totalMatches: 0,
+                totalGoals: 0,
+                totalAssists: 0,
+                totalYellowCards: 0,
+                averageGoalsPerMatch: 0,
+                averageAssistsPerMatch: 0,
+                bestSeason: null
+            };
+
+            let bestGoals = 0;
+
+            for (const [season, stats] of Object.entries(player.season)) {
+
+                careerStats.totalMatches += stats.matches;
+                careerStats.totalGoals += stats.goals;
+                careerStats.totalAssists += stats.assists;
+                careerStats.totalYellowCards += stats.yellowCard;
+
+                if (stats.goals > bestGoals) {
+                    bestGoals = stats.goals;
+                    careerStats.bestSeason = {
+                        season,
+                        goals: stats.goals,
+                        assists: stats.assists
+                    };
+                }
+            }
+
+            careerStats.averageGoalsPerMatch =
+                Number((careerStats.totalGoals / careerStats.totalMatches).toFixed(2));
+
+            careerStats.averageAssistsPerMatch =
+                Number((careerStats.totalAssists / careerStats.totalMatches).toFixed(2));
+
+            return {
+                name: player.name,
+                position: player.position,
+                nationality: player.nationality,
+                careerStats
+            };
+        }
+        console.log(generatePlayerSeasonReport("Messi", teamHistory));
+    </script>
+</body>
+</html>

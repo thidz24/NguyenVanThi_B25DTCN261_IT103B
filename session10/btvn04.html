@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const salaryAnalysis = {
+            totalSalary: 10,
+            highestPaid: { name: "Messi", salary: 100 },
+            lowestPaid: { name: "Benzema", salary: 100},
+        };
+        const players = [
+            { name: "Messi", year: 18, salary: 100 },
+            { name: "Ronaldo", year: 20, salary: 95},
+            { name: "Neymar", year: 12, salary: 90 },
+            { name: "Mbappe", year: 7, salary: 85 },
+            { name: "Haaland", year: 5, salary: 80 },
+            { name: "Modric", year: 22, salary: 70 },
+            { name: "Benzema", year: 19, salary: 75 }
+        ];
+        function analyzeSalary(minYears, teamPlayers) {
+            const filteredPlayers = teamPlayers.filter(player => player.year >= minYears);
+            if(filteredPlayers.length === 0) {
+                return {
+                    totalSalary: 0,
+                    highestPaid: null,
+                    lowestPaid: null
+                };
+            }
+            const totalSalary = filteredPlayers.reduce((total, player) => total + player.salary, 0);
+            const highestPaid = filteredPlayers.reduce((highest, player) => player.salary > highest.salary ? player : highest, filteredPlayers[0]);
+            const lowestPaid = filteredPlayers.reduce((lowest, player) => player.salary < lowest.salary ? player : lowest, filteredPlayers[0]);
+            return {
+                totalSalary,
+                highestPaid,
+                lowestPaid
+            };
+        }
+        console.log(analyzeSalary(10, players));
+        console.log(analyzeSalary(30, players));
+    </script>
+</body>
+</html>
